@@ -1,0 +1,29 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="300"
+        Width="400" Height="300"
+        x:Class="Atlassian.Authentication.Helper.Views.UserPassWindow"
+        Title="UserPass">
+    <StackPanel Margin="10">
+        <Image Source="/Assets/ecosystem-gradient-blue@2x.png"/>
+        <StackPanel Margin="10">
+            <TextBlock Text="{Binding Path=HostUrl}" TextAlignment="Center"/>
+        </StackPanel>
+        <Border Classes="TextBox">
+            <TextBox Watermark="Username" Text="{Binding Path=Username}"/>
+        </Border>
+        <Border Classes="TextBox">
+            <TextBox Watermark="Password" PasswordChar="*" Text="{Binding Path=Password}"/>   
+        </Border>
+        <StackPanel Orientation="Horizontal" Margin="10">
+                <Border Classes="ButtonPrimary">
+                    <Button Classes="Primary" Command="{Binding LoginCommand}" CommandParameter="Button">Login</Button>
+                </Border>
+                <Border Classes="ButtonSecondary">
+                    <Button Classes="Secondary" Command="{Binding CancelCommand}" CommandParameter="Button">Cancel</Button>
+                </Border>
+            </StackPanel>        
+	</StackPanel>
+</Window>
