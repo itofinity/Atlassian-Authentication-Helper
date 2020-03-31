@@ -32,6 +32,8 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
       run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}
+    - name: Push
+      run: dotnet nuget push ./**/Atlassian.Authentication.Helper*.*.nupkg --api-key ${{ secrets.MYGET_ITOFINITY_APIKEY }} --source https://www.myget.org/F/itofinity/api/v2/package
     - name: Publish Portable
       run: dotnet publish -c release -o ./distribution/portable/release 
     - name: Publish OSX
