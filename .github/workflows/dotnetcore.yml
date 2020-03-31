@@ -33,7 +33,7 @@ jobs:
     - name: Pack
       run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}
     - name: Push
-      run: dotnet nuget push ./**/Atlassian.Authentication.Helper*.*.nupkg --api-key ${{ secrets.MYGET_ITOFINITY_APIKEY }} --source https://www.myget.org/F/itofinity/api/v2/package
+      run: dotnet nuget push ./**/atlassian-authentication-helper*.*.nupkg --api-key ${{ secrets.MYGET_ITOFINITY_APIKEY }} --source https://www.myget.org/F/itofinity/api/v2/package
     - name: Publish Portable
       run: dotnet publish -c release -o ./distribution/portable/release 
     - name: Publish OSX
@@ -45,28 +45,28 @@ jobs:
     - name: Upload Nupkg
       uses: actions/upload-artifact@v2-preview 
       with:
-        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
-        path: ./**/Atlassian.Authentication.Helper*.*.nupkg
+        name: atlassian-authentication-helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
+        path: ./**/atlassian-authentication-helper*.*.nupkg
     - name: Upload Portable Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
-        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.osx-x64.zip
+        name: atlassian-authentication-helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.osx-x64.zip
         path: ./distribution/portable/release
     - name: Upload OSX Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
-        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.osx-x64.zip
-        path: ./distribution/osx-x64/release/Atlassian.Authentication.Helper
+        name: atlassian-authentication-helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.osx-x64.zip
+        path: ./distribution/osx-x64/release/
     - name: Upload Windows Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
-        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.win-x64.zip
-        path: ./distribution/win-x64/release/Atlassian.Authentication.Helper.exe
+        name: atlassian-authentication-helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.win-x64.zip
+        path: ./distribution/win-x64/release/
     - name: Upload Linux Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
-        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.linux-x64.zip
-        path: ./distribution/linux-x64/release/Atlassian.Authentication.Helper
+        name: atlassian-authentication-helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.linux-x64.zip
+        path: ./distribution/linux-x64/release/
     - name: Release
       uses: meeDamian/github-release@2.0
       with:
@@ -78,8 +78,8 @@ jobs:
         gzip: folders
         prerelease: true
         files: >
-          Atlassian.Authentication.Helper.Portable:./distribution/portable/release
-          Atlassian.Authentication.Helper.Linux.Windows:./distribution/win-x64/release/
-          Atlassian.Authentication.Helper.Linux:./distribution/linux-x64/release/
-          Atlassian.Authentication.Helper.Osx:./distribution/osx-x64/release/
+          atlassian-authentication-helper-portable:./distribution/portable/release
+          atlassian-authentication-helper-windows:./distribution/win-x64/release/
+          atlassian-authentication-helper-linux:./distribution/linux-x64/release/
+          atlassian-authentication-helper-osx:./distribution/osx-x64/release/
           license:LICENSE
