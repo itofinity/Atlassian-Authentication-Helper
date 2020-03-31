@@ -30,8 +30,8 @@ jobs:
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
       run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}
-    - name: Publish dotnet core
-      run: dotnet publish -c release -o ./distribution/dotnetcore/release /p:PublishSingleFile=true
+    - name: Publish Portable
+      run: dotnet publish -c release -o ./distribution/portable/release 
     - name: Publish OSX
       run: dotnet publish -r osx-x64 -c release -o ./distribution/osx-x64/release /p:PublishSingleFile=true
     - name: Publish Windows
@@ -43,11 +43,11 @@ jobs:
       with:
         name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
         path: ./**/Atlassian.Authentication.Helper*.*.nupkg
-    - name: Upload dotnetcore Artifact
+    - name: Upload Portable Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
         name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.osx-x64.zip
-        path: ./distribution/dotnetcore/release
+        path: ./distribution/portable/release
     - name: Upload OSX Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
