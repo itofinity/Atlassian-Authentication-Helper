@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  versionSemVer: "0.1.0"
+  versionSuffixRoot: "ci"
+  buildNumber: ${{ github.run_number }}
+
 jobs:
   build:
 
@@ -20,6 +25,13 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore --version-suffix ${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
+    - name: Pack
+      run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}
+    - name: Upload
+      uses: actions/upload-artifact@v2-preview 
+      with:
+        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
+        path: ./**/Atlassian.Authentication.Helper*.*.nupkg
