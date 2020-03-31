@@ -78,7 +78,7 @@ jobs:
         gzip: folders
         prerelease: true
         files: >
-          ./distribution/portable/release
+          Atlassian.Authentication.Helper.Portable:./distribution/portable/release
           ./distribution/win-x64/release/Atlassian.Authentication.Helper.exe
           Atlassian.Authentication.Helper.Linux:./distribution/linux-x64/release/Atlassian.Authentication.Helper
           Atlassian.Authentication.Helper.Osx:./distribution/osx-x64/release/Atlassian.Authentication.Helper
