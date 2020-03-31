@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore --version-suffix ${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }} -r osx-x64
+      run: dotnet build --configuration Release --no-restore --version-suffix ${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }} 
     - name: Test
       run: dotnet test --no-restore --verbosity normal
     - name: Pack
