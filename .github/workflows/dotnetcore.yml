@@ -78,7 +78,7 @@ jobs:
         files: >
           ./distribution/portable/release
           ./distribution/win-x64/release/Atlassian.Authentication.Helper.exe
-          ./distribution/linux-x64/release/Atlassian.Authentication.Helper
-          ./distribution/osx-x64/release/Atlassian.Authentication.Helper
+          Atlassian.Authentication.Helper.Linux:./distribution/linux-x64/release/Atlassian.Authentication.Helper
+          Atlassian.Authentication.Helper.Osx:./distribution/osx-x64/release/Atlassian.Authentication.Helper
           license:LICENSE
           work-flows:.github/
