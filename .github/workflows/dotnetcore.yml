@@ -22,6 +22,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
+    - name: Clean Distribution
+      run: rm -Rf ./distribution/
     - name: Install dependencies
       run: dotnet restore
     - name: Build
@@ -52,14 +54,14 @@ jobs:
       uses: actions/upload-artifact@v2-preview 
       with:
         name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.osx-x64.zip
-        path: ./distribution/osx-x64/release
+        path: ./distribution/osx-x64/release/Atlassian.Authentication.Helper
     - name: Upload Windows Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
         name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.win-x64.zip
-        path: ./distribution/win-x64/release
+        path: ./distribution/win-x64/release/Atlassian.Authentication.Helper.exe
     - name: Upload Linux Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
         name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.exe.linux-x64.zip
-        path: ./distribution/linux-x64/release
+        path: ./distribution/linux-x64/release/Atlassian.Authentication.Helper
