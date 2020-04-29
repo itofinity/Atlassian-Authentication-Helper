@@ -34,8 +34,6 @@ jobs:
       run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}
     - name: Push Library NuPkg
       run: dotnet nuget push ./**/Atlassian-Authentication-Helper*.*.nupkg --api-key ${{ secrets.MYGET_ITOFINITY_APIKEY }} --source https://www.myget.org/F/itofinity/api/v2/package
-    - name: Push Exes NuPkg
-      run: dotnet nuget push ./**/Atlassian-Authentication-Helper-Executables*.*.nupkg --api-key ${{ secrets.MYGET_ITOFINITY_APIKEY }} --source https://www.myget.org/F/itofinity/api/v2/package
     - name: Publish Portable
       run: dotnet publish -c release -o ./distribution/portable/release 
     - name: Publish OSX
@@ -46,6 +44,8 @@ jobs:
       run: dotnet publish -r linux-x64 -c release -o ./distribution/linux-x64/release /p:PublishSingleFile=true /p:PublishTrimmed=true
     - name: Pack Exes
       run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }} /p:PackExe=True
+    - name: Push Exes NuPkg
+      run: dotnet nuget push ./**/Atlassian-Authentication-Helper-Executables*.*.nupkg --api-key ${{ secrets.MYGET_ITOFINITY_APIKEY }} --source https://www.myget.org/F/itofinity/api/v2/package
     - name: Upload Library Nupkg
       uses: actions/upload-artifact@v2-preview 
       with:
