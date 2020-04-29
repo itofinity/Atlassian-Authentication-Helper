@@ -13,8 +13,8 @@
     <projectUrl>http://url.local</projectUrl>
   </metadata>
   <files>
-    <file src="../distribution/osx-x64/publish/*" target="tools/osx-x64" />
-    <file src="../distribution/win-x64/publish/*" target="tools/win-x64" />
-    <file src="../distribution/linux-x64/publish/*" target="tools/linux-x64" />
+    <file src="../distribution/osx-x64/release/*" target="tools/osx-x64" />
+    <file src="../distribution/win-x64/release/*" target="tools/win-x64" />
+    <file src="../distribution/linux-x64/release/*" target="tools/linux-x64" />
   </files>
 </package>
