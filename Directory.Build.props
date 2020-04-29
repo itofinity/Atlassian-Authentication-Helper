@@ -1,0 +1,22 @@
+<Project>
+  <PropertyGroup>
+    <Product>Atlassian-Authentication-Helper</Product>
+    <Company>Itofinity</Company>
+    <Copyright>Copyright © 2020</Copyright>
+    <Description>UI Helper to interact with Atlassian authentication</Description>
+
+    <!-- overridden by CI --> 
+    <VersionPrefix>0.1.0</VersionPrefix>
+    <VersionSuffix>snapshot</VersionSuffix>
+
+    <AssemblyTitle>Debug Build ($(TargetFramework)), ($(TargetFrameworkIdentifier))</AssemblyTitle>
+
+
+    <RepositoryUrl>https://github.com/itofinity/Atlassian-Authentication-Helper</RepositoryUrl>
+
+    <!-- Nuget -->
+    <PackageId Condition="'$(PackExe)'!=''">Atlassian-Authentication-Helper-Executables</PackageId>
+    <PackageId Condition="'$(PackExe)'==''">Atlassian-Authentication-Helper</PackageId>
+    <Authors>mminns@itofinity.co.uk</Authors>
+  </PropertyGroup>
+</Project>

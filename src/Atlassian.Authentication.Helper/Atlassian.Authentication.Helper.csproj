@@ -22,4 +22,20 @@
     <PackageReference Include="Itofinity.Bitbucket.Authentication" Version="0.1.0-ci-24" />
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="2.4.4" />
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(PackExe)'!=''">
+    <NuspecFile>pack-exe.nuspec</NuspecFile>
+    <NuspecProperties>$(NuspecProperties);configuration=$(Configuration)</NuspecProperties>
+    <NuspecProperties Condition="'$(VersionSuffix)'!=''">$(NuspecProperties);version=$(VersionPrefix)-$(VersionSuffix)</NuspecProperties>
+    <NuspecProperties Condition="'$(VersionSuffix)'==''">$(NuspecProperties);version=$(VersionPrefix)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);id=$(PackageId)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);author=$(Authors)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageProjectUrl=$(PackageProjectUrl)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);Description=$(Description)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageReleaseNotes=$(PackageReleaseNotes)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);Copyright=$(Copyright)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);PackageTags=$(PackageTags)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);RepositoryType=$(RepositoryType)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);RepositoryUrl=$(RepositoryUrl)</NuspecProperties>
+  </PropertyGroup>
 </Project>

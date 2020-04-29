@@ -42,11 +42,18 @@ jobs:
       run: dotnet publish -r win-x64 -c release -o ./distribution/win-x64/release /p:PublishSingleFile=true /p:PublishTrimmed=true
     - name: Publish Linux
       run: dotnet publish -r linux-x64 -c release -o ./distribution/linux-x64/release /p:PublishSingleFile=true /p:PublishTrimmed=true
-    - name: Upload Nupkg
+    - name: Pack Exes
+      run: dotnet pack /p:PackageVersion=${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }} /p:PackExe=True
+    - name: Upload Library Nupkg
       uses: actions/upload-artifact@v2-preview 
       with:
-        name: Atlassian.Authentication.Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
-        path: ./**/Atlassian.Authentication.Helper*.*.nupkg
+        name: Atlassian-Authentication-Helper.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
+        path: ./**/Atlassian-Authentication-Helper*.*.nupkg
+    - name: Upload Exes Nupkg
+      uses: actions/upload-artifact@v2-preview 
+      with:
+        name: Atlassian-Authentication-Helper-Executables.${{ env.versionSemVer }}-${{ env.versionSuffixRoot }}-${{ env.buildNumber }}.nupkg.zip
+        path: ./**/Atlassian-Authentication-Helper-Executables*.*.nupkg
     - name: Upload Portable Artifact
       uses: actions/upload-artifact@v2-preview 
       with:
